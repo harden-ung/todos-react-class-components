@@ -1,5 +1,17 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import Proptypes from 'prop-types';
+
+const btnStyle = {
+  background: '#ff0000',
+  color: '#fff',
+  border: 'none',
+  padding: '5px 8px',
+  borderRadius: '50%',
+  cursor: 'pointer',
+  float: 'right'
+};
 
 export class TodoItem extends Component {
   getStyle = () => {
@@ -22,7 +34,11 @@ export class TodoItem extends Component {
             onChange={this.props.markComplete.bind(this, id)}
           />
           {title}
-          <button onClick={this.props.delTodo.bind(this, id)} style={btnStyle}>
+          <button
+            onClick={this.props.delTodo.bind(this, id)}
+            // @ts-ignore
+            style={btnStyle}
+          >
             x
           </button>
         </p>
@@ -33,18 +49,9 @@ export class TodoItem extends Component {
 
 // Proptypes
 TodoItem.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
   todo: Proptypes.object.isRequired,
   markComplete: Proptypes.func.isRequired,
   delTodo: Proptypes.func.isRequired
 };
 export default TodoItem;
-
-const btnStyle = {
-  background: '#ff0000',
-  color: '#fff',
-  border: 'none',
-  padding: '5px 8px',
-  borderRadius: '50%',
-  cursor: 'pointer',
-  float: 'right'
-};

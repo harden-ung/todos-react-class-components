@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import TodoItem from './TodoItem';
+import { TodoItem } from './TodoItem';
 
 class Todos extends Component {
   render() {
-    return this.props.todos.map(todo => {
+    const { todos, markComplete, delTodo } = this.props;
+    return todos.map(todo => {
       return (
         <TodoItem
-          markComplete={this.props.markComplete}
-          delTodo={this.props.delTodo}
+          markComplete={markComplete}
+          delTodo={delTodo}
           key={todo.id}
           todo={todo}
         />
@@ -17,6 +18,7 @@ class Todos extends Component {
   }
 }
 Todos.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
   todos: PropTypes.array.isRequired,
   markComplete: PropTypes.func.isRequired,
   delTodo: PropTypes.func.isRequired
